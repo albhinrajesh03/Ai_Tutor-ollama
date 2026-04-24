@@ -15,7 +15,7 @@ while True:
         break
 
     relevant_chunks = retrieve(question, chunks)
-    context = "\n".join(relevant_chunks[:2])
+    context = "\n".join(relevant_chunks[:3])
 
     prompt = f"""
     You are an expert AI tutor.

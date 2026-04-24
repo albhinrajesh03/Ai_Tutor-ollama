@@ -5,12 +5,12 @@ from llm import ask_llm
 text = load_pdf("book.pdf")
 chunks = split_text(text)
 
-print("AI Tutor Ready (type 'exit' to quit)")
+print("AI Tutor (type 'bye' to exit)")
 
 while True:
     question = input("You: ")
 
-    if question.lower() == "exit":
+    if question.lower() == "bye":
         print("Goodbye")
         break
 

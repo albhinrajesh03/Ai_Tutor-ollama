@@ -10,8 +10,6 @@ def ask_llm(prompt):
                 "stream": False
             },
         )
-
         return response.json()["response"]
-
     except Exception as e:
         return f"Error: {e}"

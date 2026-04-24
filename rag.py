@@ -1,9 +1,11 @@
 def split_text(text, chunk_size=800):
-    """
-    Break large text into smaller chunks for processing
-    """
-    return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
-
+    chunks = []
+    i = 0
+    while i < len(text):
+        chunk = text[i:i+chunk_size]
+        chunks.append(chunk)         
+        i = i + chunk_size            
+    return chunks
 
 def retrieve(question, chunks):
     """

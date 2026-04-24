@@ -2,7 +2,6 @@ from pdf_loader import load_pdf
 from rag import split_text, retrieve
 from llm import ask_llm
 
-# Load PDF
 text = load_pdf("book.pdf")
 chunks = split_text(text)
 

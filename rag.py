@@ -9,9 +9,20 @@ def split_text(text, chunk_size=500):
 
 def retrieve(question, chunks):
     question_words = question.lower().split()
-    results = []
+    scored = []
+
     for chunk in chunks:
         chunk_lower = chunk.lower()
-        if any(word in chunk_lower for word in question_words):
-            results.append(chunk)
-    return results[:3]
+        score = 0
+        for word in question_words:
+            if word in chunk_lower:
+                score = score + 1
+        if score > 0:
+            scored.append([score, chunk])
+
+    scored.sort(reverse=True)
+
+    top_chunks = []
+    for item in scored[:3]:
+        top_chunks.append(item[1])
+    return top_chunks

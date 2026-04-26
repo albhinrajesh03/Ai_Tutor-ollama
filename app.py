@@ -1,9 +1,11 @@
 from pdf_loader import load_pdf
 from rag import split_text, retrieve
 from llm import ask_llm
+from st_rag import prepare_chunks, retrieve
 
 text = load_pdf("book.pdf")
 chunks = split_text(text)
+encodings=prepare_chunks(chunks)
 
 print("AI Tutor (type 'bye' to exit)")
 
@@ -14,8 +16,8 @@ while True:
         print("Goodbye")
         break
 
-    relevant_chunks = retrieve(question, chunks)
-    context = "\n".join(relevant_chunks[:3])
+    best_chunk = retrieve(question, chunks, encodings)
+    context = best_chunk
 
     prompt = f"""
     You are an expert AI tutor.

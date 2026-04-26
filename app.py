@@ -16,8 +16,7 @@ while True:
         print("Goodbye")
         break
 
-    best_chunk = retrieve(question, chunks, encodings)
-    context = best_chunk
+    context = retrieve(question, chunks, encodings)
 
     prompt = f"""
     You are an expert AI tutor.

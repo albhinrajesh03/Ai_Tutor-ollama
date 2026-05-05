@@ -19,11 +19,14 @@ def retrieve(question,chunks,encodings):
 
     similarities.sort(reverse=True, key=lambda x:x[0])
 
+    if not similarities:
+        return []
+
     if similarities[0][0]<0.3:
         return []
 
     top_k=3
-    for score,chunk in similarities[:top_key]:
+    for score,chunk in similarities[:top_k]:
         result.append(chunk)
 
     return result

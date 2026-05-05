@@ -10,7 +10,10 @@ def prepare_chunks(chunks):
 def retrieve(question,chunks,encodings):
     question_encoding=model.encode(question)
 
-    similarities=numpy.matmul(encodings,question_encoding)
+    similarities=[]
+    for emb in encodings:
+        score=numpy.dot(emb,question)/numpy.linalg.norm(emb)*numpy.linalg.norm(question)
+        similarities.append(score)
 
     best_index=int(numpy.argmax(similarities))
 

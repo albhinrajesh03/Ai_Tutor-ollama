@@ -13,7 +13,7 @@ def retrieve(question,chunks,encodings):
     similarities=[]
     for emb,chunks in zip(encodings,chunks):
         score=numpy.dot(emb,question)/numpy.linalg.norm(emb)*numpy.linalg.norm(question)
-        similarities.append(score,emb)
+        similarities.append(score,chunk)
 
     result=[]
 

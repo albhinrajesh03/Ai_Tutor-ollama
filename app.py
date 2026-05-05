@@ -21,6 +21,10 @@ while True:
         print("Bot: I don't know the answer")
         break
 
+    if not results:
+        print("Bot: I couldn't find relevant information in the document.")
+        break
+
     context="\n".join(result)
 
     prompt = f"""

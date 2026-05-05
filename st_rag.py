@@ -13,8 +13,18 @@ def retrieve(question,chunks,encodings):
     similarities=[]
     for emb in encodings:
         score=numpy.dot(emb,question)/numpy.linalg.norm(emb)*numpy.linalg.norm(question)
-        similarities.append(score)
+        similarities.append(score,emb)
 
-    best_index=int(numpy.argmax(similarities))
+    result=[]
 
-    return chunks[best_index]
+    similarities.sort(reverse=True)
+
+    if similarities[0]<0.3:
+        return "don't"
+
+    top_k=3
+    i=0
+    while(i<top_k):
+        result.append(similarities[i])
+
+    return result

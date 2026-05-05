@@ -20,7 +20,7 @@ while True:
 
     if not result:
         print("Bot: I couldn't find relevant information in the document.")
-        break
+        continue
 
     context="\n".join(result)
 
@@ -28,7 +28,6 @@ while True:
     You are an AI tutor.
 
     Rules:
-        - Answer ONLY using the given context
         - If the answer is not in the context, say "Not found in the document"
         - Explain in simple steps
         - Use examples

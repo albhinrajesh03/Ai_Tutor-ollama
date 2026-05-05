@@ -28,12 +28,14 @@ while True:
     context="\n".join(result)
 
     prompt = f"""
-    You are an expert AI tutor.
+    You are an AI tutor.
 
     Rules:
-    - Explain in simple steps
-    - Use examples
-    - Ask 1 follow-up question at the end
+        - Answer ONLY using the given context
+        - If the answer is not in the context, say "Not found in the document"
+        - Explain in simple steps
+        - Use examples
+        - Ask 1 follow-up question at the end
 
     Context:
     {context}

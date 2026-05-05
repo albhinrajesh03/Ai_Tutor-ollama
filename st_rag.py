@@ -23,8 +23,7 @@ def retrieve(question,chunks,encodings):
         return []
 
     top_k=3
-    i=0
-    while(i<top_k):
-        result.append(similarities[i][1])
+    for score,chunk in similarities[:top_key]:
+        result.append(chunk)
 
     return result

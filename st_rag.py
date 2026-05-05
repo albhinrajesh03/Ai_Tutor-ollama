@@ -25,6 +25,6 @@ def retrieve(question,chunks,encodings):
     top_k=3
     i=0
     while(i<top_k):
-        result.append(similarities[i])
+        result.append(similarities[i][1])
 
     return result

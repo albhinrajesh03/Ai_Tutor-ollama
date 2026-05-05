@@ -17,7 +17,7 @@ def retrieve(question,chunks,encodings):
 
     result=[]
 
-    similarities.sort(reverse=True)
+    similarities.sort(reverse=True, key=lambda x:x[0])
 
     if similarities[0][0]<0.3:
         return []

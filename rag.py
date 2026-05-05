@@ -20,7 +20,7 @@ def retrieve(question, chunks):
         if score > 0:
             scored.append([score, chunk])
 
-    scored.sort(reverse=True)
+    scored.sort(reverse=True,key=lambda x:x[0])
 
     top_chunks = []
     for item in scored[:3]:

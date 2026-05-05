@@ -17,9 +17,6 @@ while True:
         break
 
     result = retrieve(question, chunks, encodings)
-    if result=="don't":
-        print("Bot: I don't know the answer")
-        break
 
     if not result:
         print("Bot: I couldn't find relevant information in the document.")

@@ -16,7 +16,12 @@ while True:
         print("Goodbye")
         break
 
-    context = retrieve(question, chunks, encodings)
+    result = retrieve(question, chunks, encodings)
+    if result=="don't":
+        print("Bot: I don't know the answer")
+        break
+
+    context="\n".join(result)
 
     prompt = f"""
     You are an expert AI tutor.

@@ -18,4 +18,8 @@ def retrieve(question,chunks,encodings):
 
     distance, indices=index.search(question_encoding,2)
 
-    return chunks[indices[0][0]]
+    result=[]
+    for i in indices[0]:
+        result.append(chunks[i])
+
+    return result

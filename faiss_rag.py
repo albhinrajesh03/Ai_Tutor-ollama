@@ -9,9 +9,9 @@ def prepare_chunks(chunks):
     return encoded
 
 def retrieve(question,chunks,encodings):
-    question_encoding=model.encode(question).astype("float32")
+    question_encoding=model.encode([question]).astype("float32")
 
-    dimension=encodings.shape[1]
+    dimension=question_encoding.shape[1]
     index=faiss.IndexFlatL2(dimension)
 
     index.add(encodings)

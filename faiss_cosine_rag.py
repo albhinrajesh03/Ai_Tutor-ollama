@@ -21,6 +21,9 @@ def retrieve(question, chunks, encoded):
 
   scores, indices=index.search(question_encoded,2)
 
+  if scores[0][0]<0.5:
+    return []
+
   result=[]
   for i in indices[0]:
     result.append(chunks[i])

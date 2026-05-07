@@ -2,6 +2,15 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy
 
+def split_text(text, chunk_size=500, overlap=100):
+    chunks = []
+    i = 0
+    while i < len(text):
+        chunk = text[i:i+chunk_size]
+        chunks.append(chunk)         
+        i = i + chunk_size - overlap           
+    return chunks
+
 model=SentenceTransformer('all-MiniLM-L6-v2')
 
 def prepare_chunks(chunks):

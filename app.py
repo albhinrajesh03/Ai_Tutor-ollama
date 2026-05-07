@@ -1,7 +1,6 @@
 from pdf_loader import load_pdf
-from rag import split_text
+from faiss_cosine_rag import split_text, prepare_chunks, retrieve
 from llm import ask_llm
-from faiss_cosine_rag import prepare_chunks, retrieve
 
 text = load_pdf("book.pdf")
 chunks = split_text(text)

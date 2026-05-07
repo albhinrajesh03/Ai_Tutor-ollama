@@ -19,7 +19,7 @@ while True:
     result = retrieve(question, chunks, encodings)
 
     if not result:
-        print("Bot: I couldn't find relevant information in the document.")
+        print("Ai: I couldn't find relevant information in the document.")
         continue
 
     context="\n".join(result)

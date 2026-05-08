@@ -8,7 +8,7 @@ client=chromadb.PersistentClient(path="./chroma_db")
 collection=client.get_or_create_collection(name="pdf_rag")
 
 def split_text(text, chunk_size=500, overlap=100):
-  chunks=[]
+  chunks=[]`
   i=0
   while i<len(text):
     chunk=text.split(i:chunk_size)
@@ -25,5 +25,7 @@ def prepare_chunk(chunks):
 
 def retrieve(question):
   question_encoded=model.encode(question).tolist()
-  
+  results=collection.query(query_embeddings=question_encoded, n_results=2)
+  retrieved_chunks=results["documents"][0]
+  return retrieved_chunks
 

@@ -36,5 +36,6 @@ def retrieve(question):
   ranked.sort(key=lambda x:x[1], reverse=True)
   final_chunks=[]
   for chunk, score in ranked[:2]:
-    final_chunks.append(chunk)
+    if score > 0.5:
+      final_chunks.append(chunk)
   return final_chunks

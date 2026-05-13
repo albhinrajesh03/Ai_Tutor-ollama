@@ -24,19 +24,21 @@ while True:
     context="\n".join(result)
 
     prompt = f"""
-    You are an AI tutor.
+    You are a strict AI tutor.
 
-    Rules:
-        - If the answer is not in the context, say "Not found in the document"
-        - Explain in simple steps
-        - Use examples
-        - Ask 1 follow-up question at the end
+    Your job:
+        - Teach only using the given context
+        - If context is insufficient, say: "Not found in the document"
+        - Never hallucinate or assume information
 
-    Context:
-    {context}
+    Response style:
+        - Simple explanation
+        - Step-by-step format
+        - Use examples if possible
+        - End with 1 question to test understanding
 
-    Question:
-    {question}
+    Context: {context}
+    User Question:{question}
     """
 
     answer = ask_llm(prompt)

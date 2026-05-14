@@ -1,33 +1,49 @@
-from sentence_transformers import SentenceTransformer
-import faiss
+from pdf_loader import load_pdf
+from faiss_cosine_rag import split_text, prepare_chunks, retrieve
+from llm import ask_llm
 
-model=SentenceTransformer('all-MiniLM-L6-v2')
+text = load_pdf("book.pdf")
+chunks = split_text(text)
+embedded_chunks = prepare_chunks(chunks)
 
-def split_text(text, chunk_size=500, overlap=100):
-    chunks=[]
-    i=0
-    while i < len(text):
-        chunk=text[i:i+chunk_size]
-        chunks.append(chunk)
-        i=i+chunk_size-overlap
-    return chunks
+print("AI Tutor (type 'bye' to exit)")
 
-def prepare_chunks(chunks):
-    encoded=model.encode(chunks).astype("float32")
-    return encoded
+while True:
+    question = input("You: ")
 
-def retrieve(question,chunks,encodings):
-    question_encoding=model.encode([question]).astype("float32")
+    if question.lower() == "bye":
+        print("Goodbye")
+        break
 
-    dimension=question_encoding.shape[1]
-    index=faiss.IndexFlatL2(dimension)
+    result = []
+    result = retrieve(question, chunks, embedded_chunks)
 
-    index.add(encodings)
+    if not result:
+        print("Ai: I couldn't find relevant information in the document.")
+        continue
 
-    distance, indices=index.search(question_encoding,2)
+    context="\n".join(result)
 
-    result=[]
-    for i in indices[0]:
-        result.append(chunks[i])
+    prompt = f"""
+    You are a strict AI tutor.
 
-    return result
+    Your job:
+        - Teach only using the given context
+        - If context is insufficient, say: "Not found in the document"
+        - Never hallucinate or assume information
+
+    Response style:
+        - Simple explanation
+        - Step-by-step format
+        - Use examples if possible
+        - End with 1 question to test understanding
+
+    Context: {context}
+    User Question:{question}
+    """
+
+    answer = ask_llm(prompt)
+
+    print("AI:")
+    print(answer)
+    print("\n" + "-"*50 + "\n")

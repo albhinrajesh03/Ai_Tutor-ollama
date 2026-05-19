@@ -2,7 +2,7 @@ from pdf_loader import load_pdf
 from basic_rag import split_text, retrieve
 from llm import ask_llm
 
-text = load_pdf("book.pdf")
+text = load_pdf("Book.pdf")
 chunks = split_text(text)
 
 print("AI Tutor (type 'bye' to exit)")

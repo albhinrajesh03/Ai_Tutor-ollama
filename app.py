@@ -2,7 +2,7 @@ from pdf_loader import load_pdf
 from chromadb_rag import split_text, prepare_chunks, retrieve
 from llm import ask_llm
 
-text = load_pdf("book.pdf")
+text = load_pdf("Book.pdf")
 chunks = split_text(text)
 prepare_chunks(chunks)
 
